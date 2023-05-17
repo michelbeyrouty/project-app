@@ -3,9 +3,9 @@ import { db } from '@/lib/db';
 import { hashPassword, createJWT } from '@/lib/auth';
 import { serialize } from "cookie";
 
-
 type Data = {
-    name: string
+    name?: string,
+    error?: string
 }
 
 export default async function register(

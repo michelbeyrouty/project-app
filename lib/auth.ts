@@ -3,7 +3,6 @@ import { SignJWT, jwtVerify } from "jose";
 import type { User } from '@prisma/client'
 import { db } from "./db";
 
-
 export function hashPassword(password: string) {
     return bcrypt.hash(password, 10)
 }

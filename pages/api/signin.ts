@@ -5,7 +5,8 @@ import { serialize } from "cookie";
 
 
 type Data = {
-    name: string
+    name?: string,
+    error?: string
 }
 
 export default async function signin(
@@ -23,13 +24,13 @@ export default async function signin(
 
         if (!user) {
             res.status(401);
-            res.json({ error: "Invalid login" } as any);
+            res.json({ error: "Invalid login" });
             return;
         }
 
         if (! await comparePasswords(req.body.password, user.password)) {
             res.status(401);
-            res.json({ error: "Invalid login" } as any);
+            res.json({ error: "Invalid login" });
             return;
         }
 
