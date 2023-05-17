@@ -10,7 +10,7 @@ export default function Sidebar() {
         <Image src={logo} alt="Able logo" priority className="w-14" />
       </div>
       {links.map((link) => (
-        <SidebarLink link={link} />
+        <SidebarLink key={link.label} link={link} />
       ))}
     </Card>
   );

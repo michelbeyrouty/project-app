@@ -1,4 +1,5 @@
-"use-client";
+"use client";
+
 import { useRouter } from "next/navigation";
 import { register, signin } from "@/lib/api";
 import Input from "./Inputs";
