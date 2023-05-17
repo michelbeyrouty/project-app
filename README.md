@@ -16,4 +16,4 @@ Alternative 3rd partie packages -> https://clerk.com/, https://supertokens.com/,
 
 ## Date Manipulation
 
-3rd partie packages you can use:
+3rd partie packages you can use -> https://date-fns.org/ , https://momentjs.com/
