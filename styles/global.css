@@ -28,14 +28,14 @@
 }
 
 .candy-mesh {
-  background-color: #ff99ee;
+  background-color: #210ab4;
   background-image: radial-gradient(
       at 99% 6%,
-      hsla(195, 69%, 67%, 1) 0px,
+      rgb(129, 128, 127) 0px,
       transparent 50%
     ),
-    radial-gradient(at 55% 88%, rgb(10, 113, 131) 0px, transparent 50%),
-    radial-gradient(at 53% 27%, rgb(36, 19, 53) 0px, transparent 50%),
+    radial-gradient(at 55% 88%, rgb(4, 65, 76) 0px, transparent 50%),
+    radial-gradient(at 53% 27%, rgb(178, 5, 5) 0px, transparent 50%),
     radial-gradient(at 89% 89%, rgb(207, 16, 16) 0px, transparent 50%),
     radial-gradient(at 35% 44%, rgb(7, 2, 72) 0px, transparent 50%);
 }

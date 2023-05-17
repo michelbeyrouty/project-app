@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 import Link from "next/link";
 import { Settings, User, Grid, Calendar } from "react-feather";
 import { usePathname } from "next/navigation";
