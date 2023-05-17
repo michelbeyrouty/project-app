@@ -17,7 +17,7 @@ function formatDate(date: Date) {
   });
 }
 
-export function ProjectCard(project: ProjectWithTasks) {
+export function ProjectCard({ project }: { project: ProjectWithTasks }) {
   const completedCount = project.tasks.filter(
     (task) => task.status === TASK_STATUS.COMPLETED
   ).length;
