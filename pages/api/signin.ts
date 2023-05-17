@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { db } from '@/lib/db';
-import { comparePasswords, createJWT } from '@/lib/auth';
+import { comparePasswords } from '@/lib/auth';
+import { createJWT } from '@/lib/jwt'
 import { serialize } from "cookie";
 
 
