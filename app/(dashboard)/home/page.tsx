@@ -2,7 +2,20 @@ import Greeting from "@/components/Greeting";
 import GreetingsSkeleton from "@/components/GreetingSkeleton";
 import Projects from "@/components/Projects";
 import ProjectsSkeleton from "@/components/ProjectsSkeleton";
+import { getUserFromCookie } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { cookies } from "next/headers";
 import { Suspense } from "react";
+
+async function getProjectCount() {
+  const user = await getUserFromCookie(cookies());
+
+  return await db.project.count({
+    where: {
+      ownerId: user?.id,
+    },
+  });
+}
 
 export default async function Page() {
   return (
@@ -14,7 +27,9 @@ export default async function Page() {
           </Suspense>
         </div>
         <div className="flex flex-2 grow items-center flex-wrap mt-3 -m-3 ">
-          <Suspense fallback={<ProjectsSkeleton />}>
+          <Suspense
+            fallback={<ProjectsSkeleton count={await getProjectCount()} />}
+          >
             <Projects />
           </Suspense>
           <div className="w-1/3 p-3">{/* new project here */}</div>
