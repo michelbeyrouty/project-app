@@ -1,0 +1,53 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { db } from '@/lib/db';
+import { comparePasswords } from '@/lib/auth';
+import { createJWT } from '@/lib/jwt'
+import { serialize } from "cookie";
+
+
+type Data = {
+    name?: string,
+    error?: string
+}
+
+export default async function signin(
+    req: NextApiRequest,
+    res: NextApiResponse<Data>
+) {
+
+    if (req.method === "POST") {
+
+        const user = await db.user.findUnique({
+            where: {
+                email: req.body.email,
+            },
+        });
+
+        if (!user) {
+            res.status(401);
+            res.json({ error: "Invalid login" });
+            return;
+        }
+
+        if (! await comparePasswords(req.body.password, user.password)) {
+            res.status(401);
+            res.json({ error: "Invalid login" });
+            return;
+        }
+
+        const jwt = await createJWT(user);
+        res.setHeader(
+            "Set-Cookie",
+            serialize(process.env.COOKIE_NAME as string, jwt, {
+                httpOnly: true,
+                path: "/",
+                maxAge: 60 * 60 * 24 * 7,
+            })
+        );
+        res.status(201);
+        res.end();
+    } else {
+        res.status(404);
+        res.end();
+    }
+}
