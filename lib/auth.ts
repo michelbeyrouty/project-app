@@ -25,13 +25,13 @@ export function createJWT(user: User) {
         .sign(new TextEncoder().encode(process.env.JWT_SECRET));
 }
 
-export async function validateJWT(jwt: string) {
+export async function validateJWT(jwt: string): Promise<User> {
     const { payload } = await jwtVerify(
         jwt,
         new TextEncoder().encode(process.env.JWT_SECRET)
     );
 
-    return payload;
+    return payload as User;
 }
 
 export async function getUserFromCookie(cookies: ReadonlyRequestCookies) {
